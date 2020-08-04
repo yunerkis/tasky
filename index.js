@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const fs = require('fs')
+const {Tasky:Task} = require("./tasky.js")
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -51,14 +52,9 @@ app.post("/tasks", (req, res) => {
 
   let state = convertState(req.body.state)
   
-  var task = { new Task(name, startDate, endDate, description, state)
-    task.push(task);
-    res.status(201).set("Content-Type", "application/json").send(task);
-  };
-
-tasks.push(task);
-
-res.status(201).set("Content-Type", "application/json").send(task);
+  var task =  new Task(name, startDate, endDate, description, state)
+  tasks.push(task);
+  res.status(201).set("Content-Type", "application/json").send(task);
 });
 
 app.get("/", (req, res) => res.send("Hello world!"));

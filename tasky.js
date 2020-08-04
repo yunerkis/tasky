@@ -1,7 +1,7 @@
 function Tasky(name, description, start, end, state){
   //Validation
 
-  if(start instanceof Date) {
+  if(!(start instanceof Date)) {
     throw new Error ("Show Start date in date format")
   }
   if(!(end instanceof Date)) {
@@ -10,10 +10,10 @@ function Tasky(name, description, start, end, state){
   if (end < start) {
     throw new Error ("End date must be higher or equal to the start date")
   }
-  if (state != AllowdStates.Created &&
-      state != AllowdStates.Started &&
-      state != AllowdStates.Finished &&
-      state != AllowdStates.Due) {
+  if (state != AllowedStates.Created &&
+      state != AllowedStates.Started &&
+      state != AllowedStates.Finished &&
+      state != AllowedStates.Due) {
           throw new Error("Allowed states are Created Started Finished or Due")
       }
   if (!name) {
@@ -29,11 +29,11 @@ function Tasky(name, description, start, end, state){
   this.state = state;
 }
 
-const AllowdStates = {
+const AllowedStates = {
   Created: 0,
   Started: 1,
   Finished: 2,
   Due: 3,
 }
 
-module.exports = {Task,AllowdStates}
+module.exports = {Tasky,AllowedStates}
